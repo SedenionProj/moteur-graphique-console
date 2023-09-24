@@ -1,4 +1,5 @@
 import os
+from lib_math import *
 
 width,height = os.get_terminal_size()
 height -= 1
@@ -11,13 +12,13 @@ def clear(char):
     for i in range(width*height):
         pixelBuffer[i] = char
 
-def putPixel(x, y, char):
-    px = round(x)
-    py = round(y)
-    if 0 <=px<width and 0<=y<height:
+def putPixel(v, char):
+    px = round(v.x)
+    py = round(v.y)
+    if 0 <=px<width and 0<=py<height:
         pixelBuffer[py * width + px] = char
 
-putPixel(10, 10, " ")
+putPixel(vec2(10,10), " ")
 draw()
 
 input()
