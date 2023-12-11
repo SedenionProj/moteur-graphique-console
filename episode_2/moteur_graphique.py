@@ -53,5 +53,5 @@ def putTriangle(tri,char):
 
 def putMesh(mesh,cam):
     for triangle in mesh:
-        putTriangle(triangle.translate3D(-1*cam.position).rotationY(cam.yaw).rotationX(cam.pitch).projection(cam.focalLenth).toScreen(),'@')
+        putTriangle(triangle.translate(-1*cam.position).rotationY(cam.yaw).rotationX(cam.pitch).projection(cam.focalLenth).toScreen(),'@')
 

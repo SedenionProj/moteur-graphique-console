@@ -54,26 +54,31 @@ class vec3:
         z1=-sin(yaw)*self.x+cos(yaw)*self.z
         return vec3(x1,self.y,z1)
     
-
-class Triangle:
-    '''triangle 2D ou 3D'''
-    
+class Triangle2D:    
     def __init__(self,v1,v2,v3) -> None:
         self.v1 = v1
         self.v2 = v2
         self.v3 = v3
 
-    def translate3D(self, v:vec3):
-        return Triangle(self.v1 + v,self.v2 + v,self.v3 + v)
+    def toScreen(self):
+        return Triangle2D(self.v1.toScreen(),self.v2.toScreen(),self.v3.toScreen())
+
+class Triangle3D:    
+    def __init__(self,v1,v2,v3) -> None:
+        self.v1 = v1
+        self.v2 = v2
+        self.v3 = v3
 
     def projection(self,focalLenth):
-        return Triangle(self.v1.projection(focalLenth),self.v2.projection(focalLenth),self.v3.projection(focalLenth))
+        return Triangle2D(self.v1.projection(focalLenth),self.v2.projection(focalLenth),self.v3.projection(focalLenth))
 
-    def toScreen(self):
-        return Triangle(self.v1.toScreen(),self.v2.toScreen(),self.v3.toScreen())
+    def translate(self, v:vec3):
+        return Triangle3D(self.v1 + v,self.v2 + v,self.v3 + v)
 
     def rotationX(self,pitch):
-        return Triangle(self.v1.rotationX(pitch),self.v2.rotationX(pitch),self.v3.rotationX(pitch))
+        return Triangle3D(self.v1.rotationX(pitch),self.v2.rotationX(pitch),self.v3.rotationX(pitch))
     
-    def rotationY(self,pitch):
-        return Triangle(self.v1.rotationY(pitch),self.v2.rotationY(pitch),self.v3.rotationY(pitch))
+    def rotationY(self,yaw):
+        return Triangle3D(self.v1.rotationY(yaw),self.v2.rotationY(yaw),self.v3.rotationY(yaw))
+    
+

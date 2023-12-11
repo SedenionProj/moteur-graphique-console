@@ -3,10 +3,10 @@ import moteur_graphique as mg
 from lib_math import *
 import time
 
-carre = [Triangle(vec3(0,0,0),
+carre = [Triangle3D(vec3(0,0,0),
                   vec3(1,0,0),
                   vec3(0,1,0)),
-         Triangle(vec3(1,0,0),
+         Triangle3D(vec3(1,0,0),
                   vec3(1,1,0),
                   vec3(0,1,0))]
 
