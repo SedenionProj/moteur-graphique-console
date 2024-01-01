@@ -12,6 +12,9 @@ class Camera:
         self.yaw = yaw
         self.focalLenth = focalLenth
 
+    def getLookAtDirection():
+        pass
+
     def getForwardDirection(self):
         return vec3(-sin(self.yaw),0,cos(self.yaw))
     
@@ -51,7 +54,7 @@ def putTriangle(tri,char):
                     if (w1 >= 0 and w2 >= 0 and w3 >= 0) or (-w1 >= 0 and -w2 >= 0 and -w3 >= 0):
                         putPixel(pos,char)
 
-def putMesh(mesh,cam):
+def putMesh(mesh:list[Triangle3D],cam:Camera):
     for triangle in mesh:
         putTriangle(triangle.translate(-1*cam.position).rotationY(cam.yaw).rotationX(cam.pitch).projection(cam.focalLenth).toScreen(),'@')
 

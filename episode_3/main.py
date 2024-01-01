@@ -3,16 +3,10 @@ import moteur_graphique as mg
 from lib_math import *
 import time
 
-carre = [
-    Triangle3D(vec3(-0.5,-0.5,1),
-               vec3(-0.5, 0.5,1),
-               vec3( 0.5, 0.5,1)),
-    Triangle3D(vec3(-0.5,-0.5,1),
-               vec3( 0.5, 0.5,1),
-               vec3( 0.5,-0.5,1))
-]
+cam = mg.Camera(vec3(0,0,0),0.0,-2.0)
+light = mg.LightSource(vec3(0,20,0))
 
-cam = mg.Camera(vec3(0,0,-3),0.0,0.0)
+cube = mg.loadObj("cube.obj")
 
 def inputs():
     if keyboard.is_pressed("down arrow"):
@@ -38,18 +32,17 @@ def inputs():
     if keyboard.is_pressed("shift"):
         cam.position.y-=0.01*dt
     
-
-last = 0
+last = time.time()
 
 while True:
     current = time.time()
-    dt = (current-last)*100
+    dt = (current-last)*500
     last=current
+
+    inputs()
 
     mg.clear(' ')
     
-    inputs()
-
-    mg.putMesh(carre,cam)
+    mg.putMesh(cube,cam,light)
 
     mg.draw()
